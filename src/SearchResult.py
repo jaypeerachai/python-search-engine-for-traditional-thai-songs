@@ -1,5 +1,3 @@
-from functools import total_ordering
-
 class SearchResult:
     def __init__(self, song, score):
         self._song = song
@@ -17,6 +15,6 @@ class SearchResult:
         return "[score={}]{}".format(self._score, self._song)
 
     def printOutputFormat(self):
-        return "Title: {}\nType: {}\n Lyric: {}".format(self._song.title, self._song.genre, self._song.lyrics)
+        return "Title: {}\nType: {}\nLyric: {}".format(self._song.title, self._song.genre, self._song.lyric)
 
     

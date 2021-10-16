@@ -1,10 +1,12 @@
 import csv
 import math
-from SearchResult import SearchResult
+
 import pythainlp
 from pythainlp.tokenize import word_tokenize
 
+from SearchResult import SearchResult
 from Song import Song
+
 
 class MySearcher:
     
@@ -28,17 +30,18 @@ class MySearcher:
                 title = row[1][row[1].index(":") + 1:]
                 genre = row[2][row[2].index(":") + 1:]
                 lyric = row[3][row[3].index(":") + 1:]
-                token_list = word_tokenize(lyric, engine = "longest", custom_dict = self.my_dict)
+                token_list = word_tokenize(lyric, engine = "longest", custom_dict = self.my_dict, keep_whitespace=False)
                 song = Song(song_id, title, genre, lyric, token_list)
                 song_list.append(song)
 
         return song_list
 
     def tokenizeQuery(self, query):
-        token_list = word_tokenize(query, engine = "longest", custom_dict = self.my_dict)
+        query = query.strip()
+        token_list = word_tokenize(query, engine = "longest", custom_dict = self.my_dict,  keep_whitespace=False)
         return token_list
 
-    def TFIDFSearch(self, query, k, genre = None):
+    def TFIDFSearch(self, query, k, genre=None):
         vocab = set()
         doc_freq = dict()
         inv_doc_freq = dict()
@@ -101,10 +104,9 @@ class MySearcher:
             
             song_result = SearchResult(song, cos)
             search_result_list.append(song_result)
-        
 
         search_result_list = sorted(search_result_list, key = keyFunction, reverse = True)
-
+        
         if k > len(search_result_list):
             search_result_list = search_result_list[: len(search_result_list)]
         else:
@@ -115,12 +117,6 @@ class MySearcher:
                 ranked_result_list.append(result)
 
         return ranked_result_list
-
-# def cmp(this, that):
-#     if this.score == that.score:
-#         return ((this.song.id > that.song.id) - (this.song.id < that.song.id))
-
-#     return ((this.score > that.score) - (this.score < that.score))
 
 def keyFunction(item):
     return item.score
