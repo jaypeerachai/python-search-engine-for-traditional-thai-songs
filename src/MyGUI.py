@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from tkinter import *
 import tkinter as tk
 from tkinter.font import Font
@@ -16,8 +18,8 @@ def search():
     output_text = ""
     if not query_text == "":
         parent_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        dataset_path = parent_path + "\dataset\dataset.txt"
-        lexitron_path = parent_path + "\lexitron\lexitron.txt"
+        dataset_path = parent_path + "/dataset/dataset.txt"
+        lexitron_path = parent_path + "/lexitron/lexitron.txt"
         my_searcher = MySearcher(dataset_path, lexitron_path)
         print('query: ', query_text)
         print('genre: ', genre_text)
