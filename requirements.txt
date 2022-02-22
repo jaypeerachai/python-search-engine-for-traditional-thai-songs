@@ -1,0 +1,16 @@
+astroid==2.9.3
+certifi==2021.10.8
+charset-normalizer==2.0.12
+idna==3.3
+isort==5.10.1
+lazy-object-proxy==1.7.1
+mccabe==0.6.1
+numpy==1.22.2
+platformdirs==2.5.1
+pylint==2.12.2
+pythainlp==3.0.5
+requests==2.27.1
+tinydb==4.7.0
+toml==0.10.2
+urllib3==1.26.8
+wrapt==1.13.3
