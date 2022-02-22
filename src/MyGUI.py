@@ -39,49 +39,50 @@ def search():
     output_box.tag_configure("yellow", foreground="black", background="yellow")
     output_box.highlight_pattern(query_text, "yellow")
 
-    
 
-window = tk.Tk()
-thai_font = Font(family="TH Baijam", size=16)
-window.title("Search Engine for Thai Traditional Songs")
-# window.geometry("720x480")
+if __name__ == '__main__':
 
-genre = StringVar(window)
-genre.set(None)
+    window = tk.Tk()
+    thai_font = Font(family="TH Baijam", size=16)
+    window.title("Search Engine for Thai Traditional Songs")
+    # window.geometry("720x480")
 
-w = tk.Label(window, text='Traditional Thai Song Search Engine', font="50") 
-w.grid(row=0, columnspan=2, pady=15)
+    genre = StringVar(window)
+    genre.set(None)
 
-tk.Label(window, text="Keyword:").grid(row=1, pady=8)
-query_entry = tk.Entry(window, font=thai_font)
-query_entry.grid(row=1, column=1, pady=8)
+    w = tk.Label(window, text='Traditional Thai Song Search Engine', font="50") 
+    w.grid(row=0, columnspan=2, pady=15)
 
-tk.Label(window, text="Type:").grid(row=2)
-type_1 = tk.Radiobutton(window, text="Both", variable=genre, value="Both")
-type_1.deselect()
-type_1.grid(row=2, column=1)
-type_2 = tk.Radiobutton(window, text="เพลงไทยเดิม", variable=genre, value="เพลงไทยเดิม")
-type_2.deselect()
-type_2.grid(row=3, column=1)
-type_3 = tk.Radiobutton(window, text="เพลงสุนทราภรณ์", variable=genre, value="เพลงสุนทราภรณ์")
-type_3.deselect()
-type_3.grid(row=4, column=1)
+    tk.Label(window, text="Keyword:").grid(row=1, pady=8)
+    query_entry = tk.Entry(window, font=thai_font)
+    query_entry.grid(row=1, column=1, pady=8)
 
-k_list = [i for i in range(1, 11)]
-k_option = StringVar(window)
-k_option.set(k_list[0]) # default value
+    tk.Label(window, text="Type:").grid(row=2)
+    type_1 = tk.Radiobutton(window, text="Both", variable=genre, value="Both")
+    type_1.deselect()
+    type_1.grid(row=2, column=1)
+    type_2 = tk.Radiobutton(window, text="เพลงไทยเดิม", variable=genre, value="เพลงไทยเดิม")
+    type_2.deselect()
+    type_2.grid(row=3, column=1)
+    type_3 = tk.Radiobutton(window, text="เพลงสุนทราภรณ์", variable=genre, value="เพลงสุนทราภรณ์")
+    type_3.deselect()
+    type_3.grid(row=4, column=1)
 
-tk.Label(window, text="Max Result:").grid(row=5, pady=8)
-k_dropdown = OptionMenu(window, k_option, *k_list)
-k_dropdown.grid(row=5, column=1, pady=10)
+    k_list = [i for i in range(1, 11)]
+    k_option = StringVar(window)
+    k_option.set(k_list[0]) # default value
 
-tk.Button(window, text='Quit', command=window.quit).grid(row=6, column=0, pady=8)
-tk.Button(window, text='Search', command=search).grid(row=6, column=1, pady=8)
+    tk.Label(window, text="Max Result:").grid(row=5, pady=8)
+    k_dropdown = OptionMenu(window, k_option, *k_list)
+    k_dropdown.grid(row=5, column=1, pady=10)
 
-output_box = CustomText(window)
-scrollbar = tk.Scrollbar(window, orient='vertical', command=output_box.yview)
-output_box.configure(height=20, width=60, font=thai_font, yscrollcommand=scrollbar.set)
-output_box.configure()
-output_box.grid(row=7, columnspan=2)
+    tk.Button(window, text='Quit', command=window.quit).grid(row=6, column=0, pady=8)
+    tk.Button(window, text='Search', command=search).grid(row=6, column=1, pady=8)
 
-window.mainloop()
+    output_box = CustomText(window)
+    scrollbar = tk.Scrollbar(window, orient='vertical', command=output_box.yview)
+    output_box.configure(height=20, width=60, font=thai_font, yscrollcommand=scrollbar.set)
+    output_box.configure()
+    output_box.grid(row=7, columnspan=2)
+
+    window.mainloop()
